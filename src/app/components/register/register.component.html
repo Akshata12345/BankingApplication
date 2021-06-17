@@ -1,0 +1,93 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 class="active underlineHover" >Sign Up </h2>
+    <form *ngIf="!isSuccessful"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate>
+
+      <input 
+      type="text"
+      class="form-control"
+      name="username"
+      placeholder="FullName"
+      [(ngModel)]="form.username"
+      required
+      minlength="3"
+      maxlength="20"
+      #username="ngModel">
+      <div *ngIf="username.errors.required">
+        <label class="validation-message">This field is required.</label>
+        <label *ngIf="username.errors.minlength">Username must be at least 3 characters</label>
+        <label *ngIf="username.errors.maxlength">Username must be at most 20 characters</label>
+      </div>
+      
+
+      <input 
+            type="text"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="form.email"
+            required
+            email
+            #email="ngModel">
+      <div class="alert-danger" *ngIf="email.errors && f.submitted">
+        <label *ngIf="email.errors.required">This field is required.</label>
+        <label *ngIf="email.errors.email">Invalid email address.</label>
+      </div>
+
+
+      <input 
+      type="password"
+            class="form-control"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel">
+      <div class="alert-danger" *ngIf="password.errors && f.submitted">
+        <label *ngIf="password.errors.required">This field is required.</label>
+        <label *ngIf="password.errors.minlength">Enter atleast 6 characters.</label>
+      </div>
+     <input type="submit" value="SignUp" >
+    
+  
+      <!-- Success message -->
+       <div class="success"  *ngIf="isSuccessful">
+         Saved successfully
+       </div>
+  
+      <!-- Error message -->
+       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+         Signup failed!<br />{{ errorMessage }}
+       </div>
+    
+  </form> 
+
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

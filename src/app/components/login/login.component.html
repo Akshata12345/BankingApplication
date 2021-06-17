@@ -1,0 +1,71 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+      <h2 class="active underlineHover"> Login </h2>
+      <form  *ngIf="!isLoggedIn"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate>
+
+          <input 
+          type="text"
+            class="form-control"
+            name="username"
+            placeholder="UserName"
+            [(ngModel)]="form.username"
+            required
+            #username="ngModel">
+          <div  class="alert alert-danger"
+          role="alert"
+          *ngIf="username.errors && f.submitted">
+            <label class="validation-message">Invalid email address.</label>
+          </div>
+
+          
+          <input 
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel">
+          <div  class="alert alert-danger"
+          role="alert"
+          *ngIf="password.errors && f.submitted">
+            <label class="validation-message">Minimum 4 characters.</label>
+          </div>
+
+          <input type="submit" value="Sign In">
+        
+        <!-- Error message -->
+      <div 
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && isLoginFailed">
+        Login failed: {{ errorMessage }}
+      </div>
+    </form>  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

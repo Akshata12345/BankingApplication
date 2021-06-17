@@ -1,0 +1,45 @@
+
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleNav(sidenav)">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      Bank Application
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened class="vertical-menu">
+      
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Accounts
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+              <mat-list-item routerLinkActive="active" routerLink="/account/cardDetails">Card Details</mat-list-item>
+              <mat-list-item routerLinkActive="active" routerLink="/account/transactions">Transactions</mat-list-item>
+              <mat-list-item routerLinkActive="active" routerLink="/account/services">Services</mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+          </mat-expansion-panel>                     
+        </mat-accordion>
+        <br/>
+        
+        <a type="text" aria-label="Toggle sidenav" mat-icon-button (click)="onLogout()" style="position:absolute;bottom:10px;">
+          <mat-icon aria-label="Side nav toggle icon">logout</mat-icon>
+          Signout
+        </a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <p style="height: 85vh">
+        <router-outlet></router-outlet>
+        
+      </p>
+    </mat-sidenav-content>
+</mat-sidenav-container>
